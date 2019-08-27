@@ -24,7 +24,7 @@ function turnLeft(rover) {
             break;
     }
 
-   
+
 
     console.log("turnLeft was called!", rover);
 }
@@ -47,7 +47,7 @@ function turnRight(rover) {
             break;
     }
 
-   // rover.travelLog.push(rover);
+    // rover.travelLog.push(rover);
     console.log("turnRight was called!", rover);
 }
 
@@ -76,27 +76,40 @@ function moveForward(rover) {
 }
 
 
-
 function moving(directions) {
 
     for (var i = 0; i < directions.length; i += 1) {
 
-        switch (directions[i]) {
-            case "f":
-                moveForward(rover);
-                break;
-            case "l":
-                turnLeft(rover);
-                break;
-            case "r":
-                turnRight(rover);
-                break;
-            default: "Error"
-                break;
-        }
+        if (rover.x >= 0 && rover.y >= 0)
+            switch (directions[i]) {
+                case "f":
+                    moveForward(rover);
+                    break;
+                case "l":
+                    turnLeft(rover);
+                    break;
+                case "r":
+                    turnRight(rover);
+                    break;
+                default: "Error"
+                    break;
+            }
     }
 
+
     console.log(rover);
+    outMap(rover);
 }
 
-moving('rffrfflfrff');
+
+function outMap(rover) {
+    if (rover.x < 0 || rover.y < 0)
+        console.log("Rover fora do mapa.")
+    else {
+        console.log("Rover dentro do mapa")
+    }
+}
+
+
+
+moving('lffffffrfflfrff');
